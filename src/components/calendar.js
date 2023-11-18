@@ -326,9 +326,11 @@ export class Calendar {
             if(hasSidebar) this.toggleSidebar();
             if(hasEvent) this.toggleEventList();
 
-            $(window)
-                .off('click.evocalendar.evo-' + this.instanceUid)
-                .on('click.evocalendar.evo-' + this.instanceUid, $.proxy(this.toggleOutside, this));
+            if (typeof windowWidth !== 'undefined') {
+                $(window)
+                    .off('click.evocalendar.evo-' + this.instanceUid)
+                    .on('click.evocalendar.evo-' + this.instanceUid, $.proxy(this.toggleOutside, this));
+            }
         } else if (windowWidth <= this.$breakpoints.mobile) {
 
             if(hasSidebar) this.toggleSidebar(false);
